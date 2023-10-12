@@ -53,6 +53,7 @@ const ProyectosProvider = ({children}) => {
         socket = io(import.meta.env.VITE_BACKEND_URL)
         return () => { socket.disconnect() }
     }, [])
+    
 
     const mostrarAlerta = alerta => {
         setAlerta(alerta)
@@ -124,7 +125,6 @@ const ProyectosProvider = ({children}) => {
             const { data } = await clienteAxios.post('/proyectos', proyecto, config)
 
             setProyectos([...proyectos, data])
-            setProyecto(data)
 
             setAlerta({
                 msg: 'Proyecto Creado Correctamente',

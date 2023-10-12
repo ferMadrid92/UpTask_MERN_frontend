@@ -10,13 +10,13 @@ const Tarea = ({tarea}) => {
     const admin = useAdmin()
 
   return (
-    <div className="border-b p-5 flex justify-between items-center">
+    <div className="border-b p-5 flex justify-between items-center gap-3">
       <div className="flex flex-col items-start">
         <p className="mb-1 text-xl font-bold">{nombre}</p>
         <p className="mb-1 text-sm text-gray-500 uppercase">{descripcion}</p>
         <p className="mb-1 text-sm">{formatearFecha(fechaEntrega)}</p>
         <p className="mb-1 text-gray-600">Prioridad: {prioridad}</p>
-        { estado && <p className="text-xs bg-green-600 uppercase p-1 rounded-lg text-white">Completada por: {tarea.completado.nombre}</p>}
+        { estado && <p className="text-xs bg-green-600 uppercase p-1 rounded-lg text-white text-center">Completada por: {tarea.completado.nombre}</p>}
       </div>
 
       <div className="flex flex-col gap-2 lg:flex-row">
