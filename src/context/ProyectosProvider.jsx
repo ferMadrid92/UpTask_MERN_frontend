@@ -13,6 +13,7 @@ const ProyectosProvider = ({children}) => {
     const [alerta, setAlerta] = useState({})
     const [proyecto, setProyecto] = useState({})
     const [cargando, setCargando] = useState(false)
+    const [modalEliminarProyecto, setModalEliminarProyecto] = useState(false)
     const [modalFormularioTarea, setModalFormularioTarea] = useState(false)
     const [tarea, setTarea] = useState({})
     const [modalEliminarTarea, setModalEliminarTarea] = useState(false)
@@ -194,6 +195,8 @@ const ProyectosProvider = ({children}) => {
                 error:false
             })
 
+            setModalEliminarProyecto(false)
+
             setTimeout(() => {
                 setAlerta({})
                 navigate('/proyectos')
@@ -205,6 +208,12 @@ const ProyectosProvider = ({children}) => {
                 error:true
             })
         }
+    }
+
+    const handleModalEliminarProyecto = (id) => {
+        const proyectosActualizados = proyectos.filter(proyectoState => proyectoState._id !== id )
+        setProyectos(proyectosActualizados)
+        setModalEliminarProyecto(!modalEliminarProyecto)
     }
 
     const handleModalTarea = () => {
@@ -499,6 +508,8 @@ const ProyectosProvider = ({children}) => {
                 submitProyecto,
                 obtenerProyecto,
                 proyecto,
+                modalEliminarProyecto,
+                handleModalEliminarProyecto,
                 cargando,
                 eliminarProyecto,
                 modalFormularioTarea,

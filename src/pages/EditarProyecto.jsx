@@ -2,19 +2,18 @@ import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import useProyectos from "../hooks/useProyectos"
 import FormularioProyecto from "../components/FormularioProyecto"
+import ModalEliminarProyecto from "../components/ModalEliminarProyecto"
 
 const EditarProyecto = () => {
   const params = useParams()
-  const { obtenerProyecto, proyecto, cargando, eliminarProyecto } = useProyectos()
+  const { obtenerProyecto, proyecto, cargando, handleModalEliminarProyecto } = useProyectos()
 
   useEffect(() => {
     obtenerProyecto(params.id)
   }, [])
 
   const handleClick = () => {
-    if(confirm('¿Deseas eliminar este proyecto?')) {
-      eliminarProyecto(params.id)
-    } 
+    handleModalEliminarProyecto(params.id)
   }
 
   const { nombre } = proyecto
@@ -60,6 +59,7 @@ const EditarProyecto = () => {
       <div className="mt-10 flex justify-center">
         <FormularioProyecto />
       </div>
+      <ModalEliminarProyecto />
     </>
   )
 }
