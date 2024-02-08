@@ -3,8 +3,12 @@ import { Link, useNavigate } from "react-router-dom"
 import Alerta from '../components/Alerta'
 import clienteAxios from '../config/clienteAxios'
 import useAuth from '../hooks/useAuth'
+import useProyectos from '../hooks/useProyectos'
+import ModalDatosPrueba from '../components/ModalDatosPrueba'
 
 const Login = () => {
+
+  const { handleModalDatosPrueba } = useProyectos()
 
   const [email, setEmail] = useState('')
   const [password, setPasword] = useState('')
@@ -21,6 +25,10 @@ const Login = () => {
         msg: 'Todos los campos son obligatorios',
         error: true
       })
+      setTimeout(() => {
+        setAlerta({})
+      }, 3600);
+      return
     }
 
     try {
@@ -102,6 +110,23 @@ const Login = () => {
             to="/olvide-password"
         >Olvidé mi Password</Link>
       </nav>
+
+      <div className='mt-5 flex flex-col items-center'>
+        <p className='text-center text-gray-600 uppercase font-bold mb-5'>¿Deseas ver el proyecto sin registrarte?</p>
+        
+        <button
+          className="border-2 border-sky-700 w-40 py-2 text-slate-700 uppercase font-bold rounded hover:cursor-pointer hover:bg-sky-800 hover:text-white hover:border-sky-800 transition-colors"
+          onClick={handleModalDatosPrueba}
+        >
+          Modo de Prueba
+        </button>
+      </div>
+
+      <ModalDatosPrueba
+        setEmail={setEmail}
+        setPasword={setPasword}
+      />
+
     </>
   );
 };

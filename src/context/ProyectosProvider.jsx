@@ -21,6 +21,9 @@ const ProyectosProvider = ({children}) => {
     const [modalEliminarColaborador, setModalEliminarColaborador] = useState(false)
     const [buscador, setBuscador] = useState(false)
 
+    //datos prueba
+    const [modalDatosPrueba, setModalDatosPrueba] = useState(false)
+
     const navigate = useNavigate()
 
     useEffect(() => {     
@@ -210,9 +213,7 @@ const ProyectosProvider = ({children}) => {
         }
     }
 
-    const handleModalEliminarProyecto = (id) => {
-        const proyectosActualizados = proyectos.filter(proyectoState => proyectoState._id !== id )
-        setProyectos(proyectosActualizados)
+    const handleModalEliminarProyecto = () => {
         setModalEliminarProyecto(!modalEliminarProyecto)
     }
 
@@ -499,6 +500,11 @@ const ProyectosProvider = ({children}) => {
         setAlerta({})
     }
 
+    //modal datos prueba
+    const handleModalDatosPrueba = () => {
+        setModalDatosPrueba(!modalDatosPrueba)
+    }
+
     return (
         <ProyectosContext.Provider
             value={{
@@ -533,7 +539,10 @@ const ProyectosProvider = ({children}) => {
                 eliminarTareaProyecto,
                 editarTareaProyecto,
                 cambiarEstadoTarea,
-                cerrarSesionProyectos
+                cerrarSesionProyectos,
+                handleModalDatosPrueba,
+                modalDatosPrueba,
+                setModalDatosPrueba
             }}
         >
             {children}
